@@ -1,0 +1,41 @@
+.mat-form-field {
+    width: 100%;
+    min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mat-form-field {
+    width: 100%
+}
+
+.oauth-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-with{
+    display: flex;
+    justify-content: center;
+    color: dimgray;
+}
+
+mat-icon{
+    color: #4267B2;
+}
