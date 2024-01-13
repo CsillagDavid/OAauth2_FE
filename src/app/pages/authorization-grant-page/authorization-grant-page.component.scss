@@ -1,0 +1,34 @@
+.cardContainer{
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+}
+
+.data-container {
+    width: 500px;
+}
+
+mat-card-title,
+mat-card-content {
+    display: flex;
+    justify-content: center;
+}
+
+.accessTokenSpan {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+pre {
+    background-color: bisque;
+}
+
+code {
+    margin: 15px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
