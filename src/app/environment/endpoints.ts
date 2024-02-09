@@ -4,9 +4,14 @@ export const endpoints = {
         login: 'v18.0/dialog/oauth'
     },
     google: {
-        login: 'google/login'
+        login: 'google/login',
+        signup: 'google/signup',
+        getUserInformations: 'google/userInformations'
     },
     client: {
-        recieveFacebookToken: 'recieveFacebookToken'
+        recieveFacebookToken: 'recieveFacebookToken',
+    },
+    auth: {
+        logout: "auth/logout"
     }
 }

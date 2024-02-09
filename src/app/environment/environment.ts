@@ -5,6 +5,11 @@ export const environment = {
     apiBaseUrl: 'https://localhost:44359/api',
     JWTCookieName: 'JWToken',
     authCheckInterval: 5000,
+    localStorage: {
+        token: 'jwtToken',
+        userInformations: "userInformations",
+        credentialResponse: "credentialResponse",
+    },
     oauth: {
         facebook: {
             clientId: '1192839698300926',

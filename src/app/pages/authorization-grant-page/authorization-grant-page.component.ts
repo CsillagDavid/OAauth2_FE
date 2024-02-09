@@ -52,10 +52,4 @@ export class AuthorizationGrantPageComponent {
 				}
 			);
 	}
-
-	logOut(){
-		this.authService
-			.logOut('http://www.facebook.com/logout.php?next=http://localhost:4200/oauth2/facebook/sign-in&access_token=EAAQ84aJ9vZC4BO20ivaP2ZCcklLZCBT2t0MBvxscktM0zhaKZCuoGW89kb9SmfWSKtaulF02yyVeyNU9KbHQlpAL3uTqY76cPJpd9isZCHsJWE1F0AHqvHMllhM4cY5BNTpu0wWZB0XxdSjIEr0q1n8wkadQP3PQCCwNyeQbwA7mhTMpSIuhVBX66ZAPTZCBsEwfhpGfB6OcnMwzj9ZACf4cZD')
-			.subscribe(x => console.log(x));
-	}
 }

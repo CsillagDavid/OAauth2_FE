@@ -1,19 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from 'src/app/services/auth.service';
-import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
-import { environment } from "../../environment/environment";
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CredentialResponse } from 'google-one-tap';
+import { environment } from 'src/app/environment/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent implements OnInit {
-	@Input() error: string | undefined;
+export class SignupComponent {
+  @Input() error: string | undefined;
 	@Output() submitEM = new EventEmitter();
 
 	form: FormGroup = new FormGroup({
@@ -36,14 +36,13 @@ export class LoginComponent implements OnInit {
 				client_id: environment.oauth.google.clientId,
 				callback: this.handleCredentialResponse.bind(this),
 				auto_select: false,
-				cancel_on_tap_outside: true,
-
+				cancel_on_tap_outside: true
 			});
 			// @ts-ignore
 			google.accounts.id.renderButton(
 				// @ts-ignore
-				document.getElementById('googleLoginButtonDiv'),
-				{ theme: "outline", size: "large", width: "100%" }
+				document.getElementById('googleSignupButtonDiv'),
+				{ theme: "outline", size: "large", width: "100%", text: "continue_with" }
 			);
 			// @ts-ignore
 			google.accounts.id.prompt((notification: PromptMomentNotification) => { });
@@ -51,28 +50,16 @@ export class LoginComponent implements OnInit {
 	}
 
 	async handleCredentialResponse(credentialResponse: CredentialResponse) {
-		this.saveCredentialResponse(credentialResponse);
-
-		this.authService.googleLogin(credentialResponse.credential)
-			.subscribe((response) => {
-				console.log(response);
-				console.log(response.token);
+		await this.authService.googleSignup(credentialResponse.credential)
+			.subscribe(response => {
 				localStorage.setItem(environment.localStorage.token, response.token);
-				localStorage.setItem(environment.localStorage.userInformations, response.userInformation);
+				localStorage.setItem('userInformation', response.userInformation);
 				this.startAuthenticateTimer();
 				this.router.navigate(['/']);
 			},
 				(error: any) => {
-					console.log(error);
-					this.snackBar.open(error.error, "Close", { duration: 5000 });
+					this.snackBar.open(error);
 				});
-	}
-	saveCredentialResponse(credentialResponse: CredentialResponse) {
-		localStorage.setItem(environment.localStorage.credentialResponse, JSON.stringify(credentialResponse));
-	}
-
-	facebookLogin() {
-		this.authService.fbLogin();
 	}
 
 	submit() {

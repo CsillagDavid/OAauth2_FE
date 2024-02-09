@@ -17,6 +17,14 @@ import { AuthService } from './services/auth.service';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthorizationGrantPageComponent } from './pages/authorization-grant-page/authorization-grant-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { HeaderComponent } from './components/header/header.component';
+import { UserService } from './services/user.service';
+import { SignupComponent } from './components/signup/signup.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { LogoutPageComponent } from './pages/logout/logout-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPageComponent,
     HomePageComponent,
     AuthorizationGrantPageComponent,
+    HeaderComponent,
+    SignupComponent,
+    SignupPageComponent,
+    LogoutPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +51,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    UserService,
+    AuthGuard,
+    MatSnackBar
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

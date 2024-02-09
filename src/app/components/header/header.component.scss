@@ -1,0 +1,19 @@
+.flex-div {
+    background-color: black;
+    color: azure;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    height: 50px;
+}
+
+div.logout{
+    cursor: pointer;
+}
+
+img {
+    border-radius: 50%;
+    height: 25px;
+}
