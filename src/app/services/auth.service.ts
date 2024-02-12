@@ -49,6 +49,12 @@ export class AuthService {
             .post<Observable<any>>(`${this.base}/${this.endpoints.google.login}`, JSON.stringify(credential), { headers: header });
     }
 
+    googleLoginWithOauth2(code: string): Observable<any> {
+        const header = new HttpHeaders().set('Content-type', 'application/json');
+        return this.httpClient
+            .post<Observable<any>>(`${this.base}/${this.endpoints.google.loginWithOauth2}`, JSON.stringify(code), { headers: header });
+    }
+
     googleSignup(credential: string): Observable<any> {
         const header = new HttpHeaders().set('Content-type', 'application/json');
         return this.httpClient

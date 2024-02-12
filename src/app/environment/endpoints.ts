@@ -6,7 +6,8 @@ export const endpoints = {
     google: {
         login: 'google/login',
         signup: 'google/signup',
-        getUserInformations: 'google/userInformations'
+        getUserInformations: 'google/userInformations',
+        loginWithOauth2: 'google/loginWithOauth2'
     },
     client: {
         recieveFacebookToken: 'recieveFacebookToken',

@@ -24,6 +24,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { LogoutPageComponent } from './pages/logout/logout-page.component';
+import { GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { environment } from './environment/environment';
 
 @NgModule({
   declarations: [
@@ -49,13 +51,29 @@ import { LogoutPageComponent } from './pages/logout/logout-page.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
   providers: [
     AuthService,
     UserService,
     AuthGuard,
-    MatSnackBar
+    MatSnackBar,
+    SocialAuthService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.oauth.google.clientId
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    } 
   ],
   bootstrap: [AppComponent]
 })
